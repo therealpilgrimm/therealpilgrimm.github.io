@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
+    }
+
+    .counter-container {
+      background: white;
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .count {
+      font-size: 128px;
+      margin: 20px 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      font-size: 36px;
+      padding: 10px 100px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="counter-container">
+    <div class="count" id="count">0</div>
+    <div class="buttons">
+      <button onclick="decrease()">−</button>
+      <button onclick="increase()">+</button>
+    </div>
+  </div>
+
+  <script>
+    let count = 0;
+
+    // Load count from localStorage if available
+    if (localStorage.getItem('counterValue') !== null) {
+      count = parseInt(localStorage.getItem('counterValue'), 10);
+    }
+
+    function updateDisplay() {
+      document.getElementById('count').textContent = count;
+      localStorage.setItem('counterValue', count); // Save to localStorage
+    }
+
+    function increase() {
+      count++;
+      updateDisplay();
+    }
+
+    function decrease() {
+      if (count > 0) count--;
+      updateDisplay();
+    }
+
+    // Initial display
+    updateDisplay();
+  </script>
+
+</body>
+</html>
