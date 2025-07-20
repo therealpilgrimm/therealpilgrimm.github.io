@@ -100,6 +100,15 @@
       speakCount();
     }
 
+    // Add keyboard support
+    document.addEventListener('keydown', (event) => {
+      if (event.key === "ArrowUp") {
+        increase();
+      } else if (event.key === "ArrowDown") {
+        decrease();
+      }
+    });
+
     // Initial display
     updateDisplay();
   </script>
