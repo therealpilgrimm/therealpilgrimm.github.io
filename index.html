@@ -6,14 +6,13 @@
   <link rel="icon" href="favicon.png" type="image/png">
   <style>
     html, body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
     }
 
     body {
-      
       margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
@@ -78,17 +77,27 @@
 
     function updateDisplay() {
       document.getElementById('count').textContent = count;
-      localStorage.setItem('counterValue', count); // Save to localStorage
+      localStorage.setItem('counterValue', count);
+    }
+
+    function speakCount() {
+      const message = new SpeechSynthesisUtterance(count.toString());
+      message.lang = "de-DE";   // Use German voice
+      message.rate = 1;         // Speed of voice (1 = normal)
+      window.speechSynthesis.cancel(); // Stop any ongoing speech
+      window.speechSynthesis.speak(message);
     }
 
     function increase() {
       count++;
       updateDisplay();
+      speakCount();
     }
 
     function decrease() {
       if (count > 0) count--;
       updateDisplay();
+      speakCount();
     }
 
     // Initial display
