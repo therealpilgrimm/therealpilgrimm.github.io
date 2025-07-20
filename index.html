@@ -70,7 +70,6 @@
   <script>
     let count = 0;
 
-    // Load count from localStorage if available
     if (localStorage.getItem('counterValue') !== null) {
       count = parseInt(localStorage.getItem('counterValue'), 10);
     }
@@ -82,8 +81,8 @@
 
     function speakCount() {
       const message = new SpeechSynthesisUtterance(count.toString());
-      message.lang = "de-DE";   // Use German voice
-      message.rate = 1;         // Speed of voice (1 = normal)
+      message.lang = "de-DE";   
+      message.rate = 1;                // Speed of voice (1 = normal)
       window.speechSynthesis.cancel(); // Stop any ongoing speech
       window.speechSynthesis.speak(message);
     }
@@ -100,7 +99,6 @@
       speakCount();
     }
 
-    // Add keyboard support
     document.addEventListener('keydown', (event) => {
       if (event.key === "ArrowUp") {
         increase();
@@ -109,7 +107,6 @@
       }
     });
 
-    // Initial display
     updateDisplay();
   </script>
 
